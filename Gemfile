@@ -8,6 +8,7 @@ end
 #API Contacts Gems
 gem 'rack-cors'
 gem 'rack-attack'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
