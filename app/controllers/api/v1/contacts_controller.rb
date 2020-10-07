@@ -8,9 +8,9 @@ class Api::V1::ContactsController < Api::V1::ApiController
     render json: @contacts
     end
 
-   # GET /api/v1/contacts/id
+   # GET /api/v1/contacts/:id
    def show
-    render json: @contacts
+    render json: @contact
    end
 
    #POST /api/v1/contacts
@@ -20,22 +20,26 @@ class Api::V1::ContactsController < Api::V1::ApiController
     if @contact.save
         render json: @contact, status: :created
     else
-        render json: @contact.erros, status: unprocessable_entity
+        render json: @contact.errors, status: :unprocessable_entity
     end
    end
 
-   #PUT /api/v1/contacts/1
+   #PUT /api/v1/contacts/:id
    def update 
     if @contact.update(contact_params)
         render json: @contact
     else
-        render json: @contact.erros, status: :unprocessable_entity
+        render json: @contact.errors, status: :unprocessable_entity
     end
    end
 
-   # DELETE /api/v1/contacts/id
+   # DELETE /api/v1/contacts/:id
    def destroy
-    @contact.destroy
+    if @contact.destroy
+        render json: { sucess: 'Contact was deleted.' }
+    else
+        render json: @contact.errors, status: :unprocessable_entity
+    end
    end
 
    private
@@ -51,7 +55,7 @@ class Api::V1::ContactsController < Api::V1::ApiController
 
    def require_authorization!
     unless current_user == @contact.user
-        render json: {}, status: :forbidden
+        render json: { error: 'Unauthorized: token invalid.' }, status: :forbidden
     end
    end
 
