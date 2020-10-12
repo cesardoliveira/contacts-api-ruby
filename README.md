@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Ruby API Contacts
+`contacts-api-ruby` is a backend server to creating your contacts. This is a simple example to show basic `Ruby on Rails` API structure. 
 
-Things you may want to cover:
+# Getting Started
+Before you start make sure you have installed:
+* [`Ruby`](https://www.ruby-lang.org/en/documentation/installation/)
+* [`Ruby on Rails`](https://guides.rubyonrails.org/v5.0/getting_started.html)
+* [`SQLite`](https://rubygems.org/gems/sqlite3-ruby/versions/1.3.3) 
 
-* Ruby version
+If you are using Windows install the [`Ruby Devkit`](https://rubyinstaller.org/).
 
-* System dependencies
+# Available Scripts
+Clone repo, in the project directory, you can run on terminal the follwing comands:
 
-* Configuration
+Update RubyGem to the latest version.
+```git
+gem update --system
+```
 
-* Database creation
+Update your gems to the latest available versions.
+```git
+bundle update --bundler
+```
+Active Record Migrations.
+```git
+rails db:migrate
+```
 
-* Database initialization
+Create a user to be authenticated:
+```git
+rails c
 
-* How to run the test suite
+User.create(email: 'example@example', password: 'password')
+```
+Copy the `authentication_token` to use in your requests.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To start the server use:
+```git
+rails s
+```
